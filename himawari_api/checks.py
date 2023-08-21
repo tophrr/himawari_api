@@ -174,13 +174,10 @@ def _correct_time_seconds(time):
     If [15-45] --> 30 
     If [45-59] --> 0 (and add 1 minute)
     """
-    if time.second > 45:
+    if time.second < 30:
         time = time.replace(second = 0) 
-        time = time + datetime.timedelta(minutes=1)
-    elif time.second > 15 and time.second < 45:
+    elif time.second >= 30:
         time = time.replace(second = 30) 
-    elif time.second < 15:
-        time = time.replace(second = 0) 
     return time
 
 
