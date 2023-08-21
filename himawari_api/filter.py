@@ -61,6 +61,7 @@ def _filter_file(
     end_time=None,
     channels=None,
     scene_abbr=None,
+    segment_numbers=None
 ):
     """Utility function to filter a filepath based on optional filter_parameters."""
     # scene_abbr and channels must be list, start_time and end_time a datetime object
@@ -77,6 +78,13 @@ def _filter_file(
             if file_channel not in channels:
                 return None
 
+    # Filter by segment_numbers
+    if segment_numbers is not None:
+        file_segment_number = info_dict.get("segment_number")
+        if file_segment_number is not None:
+            if file_segment_number not in segment_numbers:
+                return None
+            
     # Filter by scene_abbr
     if scene_abbr is not None:
         file_scene_abbr = info_dict.get("scene_abbr")
@@ -121,6 +129,7 @@ def _filter_files(
     end_time=None,
     channels=None,
     scene_abbr=None,
+    segment_numbers=None
 ):
     """Utility function to select filepaths matching optional filter_parameters."""
     if isinstance(fpaths, str):
@@ -134,6 +143,7 @@ def _filter_files(
             end_time=end_time,
             channels=channels,
             scene_abbr=scene_abbr,
+            segment_numbers=segment_numbers
         )
         for fpath in fpaths
     ]
@@ -155,6 +165,7 @@ def filter_files(
     end_time=None,
     scene_abbr=None,
     channels=None,
+    segment_numbers=None
 ):
     """
     Filter files by optional parameters.
@@ -197,6 +208,7 @@ def filter_files(
         end_time=end_time,
         channels=channels,
         scene_abbr=scene_abbr,
+        segment_numbers=segment_numbers
     )
     return fpaths
 
