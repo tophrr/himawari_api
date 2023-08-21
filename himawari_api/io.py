@@ -89,7 +89,7 @@ def _switch_to_https_fpath(fpath, protocol):
         "s3": "https://noaa-{}.s3.amazonaws.com".format(satellite.replace("-", "")),
     }
     base_url = https_base_url_dict[protocol]
-    fpath = os.path.join(base_url, fpath.split("/", 3)[3])  
+    fpath = '/'.join([base_url, fpath.split("/", 3)[3]])  
     return fpath 
     
 
@@ -147,11 +147,11 @@ def _get_product_dir(satellite, product_level, product, sector, protocol=None, b
     if base_dir is None:
         bucket = get_bucket(protocol, satellite)
     else:
-        bucket = os.path.join(base_dir, satellite.upper())
+        bucket = '/'.join([base_dir, satellite.upper()])
         if not os.path.exists(bucket):
             raise OSError(f"The directory {bucket} does not exist.")
     product_name = _get_product_name(product_level, product, sector)
-    product_dir = os.path.join(bucket, product_name)
+    product_dir = '/'.join([bucket, product_name])
     return product_dir
 
 

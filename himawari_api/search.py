@@ -200,7 +200,7 @@ def find_files(
 
     # Define glob patterns 
     fname_glob_pattern = get_fname_glob_pattern(product_level=product_level)
-    list_glob_pattern = [os.path.join(product_dir, time_dir_tree, fname_glob_pattern) for time_dir_tree in list_time_dir_tree]
+    list_glob_pattern = ['/'.join([product_dir, time_dir_tree, fname_glob_pattern]) for time_dir_tree in list_time_dir_tree]
     n_directories = len(list_glob_pattern)
     if verbose:
         print(f"Searching files across {n_directories} directories.")

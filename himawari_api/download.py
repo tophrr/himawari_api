@@ -111,7 +111,7 @@ def _select_missing_fpaths(local_fpaths, bucket_fpaths):
 def _remove_bucket_address(fpath):
     """Remove the bucket acronym (i.e. s3://) from the file path."""
     fel = fpath.split("/")[3:]
-    fpath = os.path.join(*fel)
+    fpath = '/'.join(fel)
     return fpath
 
 
@@ -119,7 +119,7 @@ def _get_local_from_bucket_fpaths(base_dir, satellite, bucket_fpaths):
     """Convert cloud bucket filepaths to local storage filepaths."""
     satellite = satellite.upper()
     fpaths = [
-        os.path.join(base_dir, satellite, _remove_bucket_address(fpath))
+        '/'.join([base_dir, satellite, _remove_bucket_address(fpath)])
         for fpath in bucket_fpaths
     ]
     return fpaths
