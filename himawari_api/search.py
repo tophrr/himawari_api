@@ -210,6 +210,10 @@ def find_files(
     list_fpaths = []
     # glob_pattern = list_glob_pattern[0]
     for glob_pattern in list_glob_pattern:
+        # On Windows operating systems, paths are constructed using backslashes (\), but AWS S3 bucket addresses use forward slashes (/).
+        # This line of code replaces any backslashes in the glob pattern with forward slashes to ensure compatibility with AWS S3 bucket addresses.
+        # This adjustment is necessary because os.path.join follows the conventions of the local operating system, which may differ from the conventions used by remote AWS file systems.
+        glob_pattern = glob_pattern.replace('\\', '/')
         # Retrieve list of files
         fpaths = fs.glob(glob_pattern)
         # Add bucket prefix
