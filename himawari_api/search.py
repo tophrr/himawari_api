@@ -290,10 +290,10 @@ def find_closest_start_time(
     timedelta = _get_acquisition_max_timedelta(sector)
     # Define start_time and end_time
     start_time = time - timedelta
-	if time + timedelta > datetime.datetime.utcnow():
-		end_time = time 
-	else: 
-		end_time = time + timedelta
+    if time + timedelta > datetime.datetime.utcnow():
+        end_time = time 
+    else: 
+        end_time = time + timedelta
     # Retrieve files
     fpath_dict = find_files(
         base_dir=base_dir,
