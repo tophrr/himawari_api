@@ -291,7 +291,7 @@ def find_closest_start_time(
     # Define start_time and end_time
     start_time = time - timedelta
     if time + timedelta > datetime.datetime.utcnow():
-        end_time = time 
+        end_time = datetime.datetime.utcnow() 
     else: 
         end_time = time + timedelta
     # Retrieve files
