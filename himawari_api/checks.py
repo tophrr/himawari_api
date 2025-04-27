@@ -162,7 +162,7 @@ def _check_time(time):
     time = time.replace(microsecond=0)
  
     # Round seconds to 00 / 30
-    time = _correct_time_seconds(time)
+    # time = _correct_time_seconds(time)
 
     return time
 
